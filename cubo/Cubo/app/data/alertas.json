@@ -1,0 +1,38 @@
+[
+  {
+    "id": "alert-001",
+    "tipo": "riesgo",
+    "mensaje": "Riesgo crediticio elevado en cartera comercial",
+    "nivel": "alto",
+    "fecha": "2024-01-15T10:30:00",
+    "estado": "activa",
+    "responsable": "Carlos Martínez"
+  },
+  {
+    "id": "alert-002",
+    "tipo": "incidente",
+    "mensaje": "Interrupción en sistema de pagos",
+    "nivel": "medio",
+    "fecha": "2024-01-14T15:45:00",
+    "estado": "resuelta",
+    "responsable": "Ana López"
+  },
+  {
+    "id": "alert-003",
+    "tipo": "alerta",
+    "mensaje": "Vencimiento próximo de certificados SSL",
+    "nivel": "bajo",
+    "fecha": "2024-01-13T09:15:00",
+    "estado": "activa",
+    "responsable": "Sistema"
+  },
+  {
+    "id": "alert-004",
+    "tipo": "riesgo",
+    "mensaje": "Fluctuación inusual en tasas de interés",
+    "nivel": "medio",
+    "fecha": "2024-01-12T14:20:00",
+    "estado": "activa",
+    "responsable": "María González"
+  }
+]

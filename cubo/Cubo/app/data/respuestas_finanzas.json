@@ -1,0 +1,14 @@
+[
+  { "clave": "balance", "respuesta": "El balance general muestra activos por $15,000,000 MXN y pasivos por $8,500,000 MXN, con un patrimonio neto de $6,500,000 MXN." },
+  { "clave": "balance anual", "respuesta": "El balance anual del ejercicio fiscal muestra un crecimiento del 12% en activos totales comparado con el año anterior." },
+  { "clave": "flujo de caja", "respuesta": "El flujo de caja operativo es de $2,800,000 MXN, con un flujo de inversión de -$1,200,000 MXN y un flujo de financiamiento de -$500,000 MXN." },
+  { "clave": "presupuesto", "respuesta": "El presupuesto anual aprobado es de $12,000,000 MXN, distribuido en 40% operaciones, 30% marketing, 20% tecnología y 10% administrativo." },
+  { "clave": "roe", "respuesta": "El ROE (Retorno sobre Capital) actual es del 18.5%, superando el objetivo del 15% establecido para este año." },
+  { "clave": "margen", "respuesta": "El margen de utilidad neta es del 22%, con un margen operativo del 28% y un margen bruto del 45%." },
+  { "clave": "liquidez", "respuesta": "El ratio de liquidez corriente es de 2.1, indicando una posición financiera sólida para cubrir obligaciones a corto plazo." },
+  { "clave": "endeudamiento", "respuesta": "El ratio de endeudamiento es del 0.57, manteniéndose dentro del rango objetivo de 0.5 a 0.6." },
+  { "clave": "ingresos", "respuesta": "Los ingresos totales del año ascienden a $18,500,000 MXN, con un crecimiento del 15% respecto al año anterior." },
+  { "clave": "gastos", "respuesta": "Los gastos operativos totales son de $14,400,000 MXN, representando el 78% de los ingresos totales." },
+  { "clave": "utilidad", "respuesta": "La utilidad neta del ejercicio es de $4,100,000 MXN, con una utilidad operativa de $5,180,000 MXN." },
+  { "clave": "inversión", "respuesta": "La inversión en capital de trabajo es de $3,200,000 MXN, con una inversión en activos fijos de $1,800,000 MXN." }
+]

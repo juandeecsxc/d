@@ -1,0 +1,4 @@
+export default [
+  { "clave": "ventas", "respuesta": "Las ventas aumentaron un 15% respecto al mes anterior." },
+  { "clave": "objetivo", "respuesta": "El objetivo del trimestre fue superado en un 20%." }
+]

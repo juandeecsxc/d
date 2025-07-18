@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubo Dashboard</title>
+    <link rel="stylesheet" href="app/css/style.css">
+</head>
+<body>
+    <nav id="sidebar" class="sidebar">
+        <button id="toggleSidebar" class="toggle-btn">☰</button>
+        <ul class="menu">
+            <li><a href="#" data-section="alertas" class="active">📢 <span class="label">Alertas</span></a></li>
+            <li><a href="#" data-section="saldos">💰 <span class="label">Saldos</span></a></li>
+            <li><a href="#" data-section="embudo">📊 <span class="label">Embudo</span></a></li>
+            <li><a href="#" data-section="canales">🔗 <span class="label">Canales</span></a></li>
+            <li><a href="#" data-section="cartera_vigente">📂 <span class="label">Cartera Vigente</span></a></li>
+            <li><a href="#" data-section="cartera_castigada">🗂️ <span class="label">Cartera Castigada</span></a></li>
+            <li><a href="#" data-section="tacticos">📈 <span class="label">Tácticos</span></a></li>
+            <li><a href="#" data-section="historico">📜 <span class="label">Histórico</span></a></li>
+            <li><a href="#" data-section="cierre_de_junta">✔️ <span class="label">Cierre de Junta</span></a></li>
+        </ul>
+    </nav>
+    <main id="content" class="content">
+        <!-- El contenido de las secciones se cargará aquí -->
+    </main>
+    <div id="leader-auth-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);align-items:center;justify-content:center;">
+        <div style="background:#fff;padding:20px;max-width:300px;width:90%;">
+            <label for="leaderNameInput">Nombre de líder:</label>
+            <input id="leaderNameInput" list="leader-list" style="width:100%;margin-top:5px;" />
+            <datalist id="leader-list">
+                <option value="Tatiana"></option>
+                <option value="Adriana"></option>
+                <option value="Lina"></option>
+                <option value="Juan"></option>
+            </datalist>
+            <button id="leaderAuthBtn" style="margin-top:10px;">Ingresar</button>
+        </div>
+    </div>
+    <script type="module" src="app/js/views/LeaderAlertas.js"></script>
+    <script type="module" src="app/js/alerts.js"></script>
+    <script type="module" src="app/js/main.js"></script>
+</body>
+</html>

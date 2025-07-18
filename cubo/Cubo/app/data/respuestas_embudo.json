@@ -1,0 +1,129 @@
+[
+  {
+    "clave": "emb-001",
+    "indicador": "Cuentas Asignadas",
+    "respuesta": "El indicador Cuentas Asignadas está por debajo de la meta.",
+    "valor_actual": 25412,
+    "unidad": "cuentas",
+    "meta": 30000,
+    "tendencia": "por debajo",
+    "como_se_construye": "Total de cuentas asignadas del CRM",
+    "definicion": "Número de cuentas asignadas a gestores para contacto",
+    "palabras_clave": [
+      "cuentas",
+      "asignadas",
+      "embudo"
+    ],
+    "fecha_corte": "2025-07-01",
+    "imagen": "embudo_asignadas.jpg"
+  },
+  {
+    "clave": "emb-002",
+    "indicador": "Gestiones totales",
+    "respuesta": "El indicador Gestiones totales ha superado la meta.",
+    "valor_actual": 27908,
+    "unidad": "gestiones",
+    "meta": 12372,
+    "tendencia": "superado",
+    "como_se_construye": "Suma de gestiones por canal (asesor, marcador, virtual)",
+    "definicion": "Gestiones realizadas en todos los medios (asesores, marcador, virtuales)",
+    "palabras_clave": [
+      "gestiones",
+      "totales",
+      "actividad"
+    ],
+    "fecha_corte": "2025-07-01",
+    "imagen": "embudo_gestiones.jpg"
+  },
+  {
+    "clave": "emb-003",
+    "indicador": "Gestiones whatsapp",
+    "respuesta": "El indicador Gestiones whatsapp está por debajo de la meta.",
+    "valor_actual": 167,
+    "unidad": "gestiones",
+    "meta": 574,
+    "tendencia": "por debajo",
+    "como_se_construye": "Conteo de gestiones etiquetadas como canal WhatsApp",
+    "definicion": "Gestiones realizadas mediante WhatsApp a clientes asignados",
+    "palabras_clave": [
+      "gestiones",
+      "whatsapp",
+      "canal"
+    ],
+    "fecha_corte": "2025-07-01",
+    "imagen": "embudo_whatsapp.jpg"
+  },
+  {
+    "clave": "emb-004",
+    "indicador": "Contacto total",
+    "respuesta": "El indicador Contacto total ha superado la meta.",
+    "valor_actual": 0.913347,
+    "unidad": "proporción",
+    "meta": 0.842679,
+    "tendencia": "superado",
+    "como_se_construye": "Contactos efectivos / Total intentos",
+    "definicion": "Proporción de contactos efectivos sobre el total de intentos",
+    "palabras_clave": [
+      "contacto",
+      "total",
+      "embudo"
+    ],
+    "fecha_corte": "2025-07-01",
+    "imagen": "embudo_contacto_total.jpg"
+  },
+  {
+    "clave": "emb-005",
+    "indicador": "Contacto único con titular",
+    "respuesta": "El indicador Contacto único con titular está por debajo de la meta.",
+    "valor_actual": 0.048914,
+    "unidad": "proporción",
+    "meta": 0.167361,
+    "tendencia": "por debajo",
+    "como_se_construye": "Titulares contactados únicos / Total clientes asignados",
+    "definicion": "Porcentaje de contactos que fueron directamente con el titular una única vez",
+    "palabras_clave": [
+      "contacto",
+      "titular",
+      "único",
+      "efectividad"
+    ],
+    "fecha_corte": "2025-07-01",
+    "imagen": "embudo_contacto_titular.jpg"
+  },
+  {
+    "clave": "emb-006",
+    "indicador": "Negociación",
+    "respuesta": "El indicador Negociación está por debajo de la meta.",
+    "valor_actual": 0.647534,
+    "unidad": "proporción",
+    "meta": 0.683301,
+    "tendencia": "por debajo",
+    "como_se_construye": "Contactos con acuerdo / Total contactos efectivos",
+    "definicion": "Porcentaje de contactos que finalizaron con una negociación activa",
+    "palabras_clave": [
+      "negociación",
+      "acuerdos",
+      "resultado"
+    ],
+    "fecha_corte": "2025-07-01",
+    "imagen": "embudo_negociacion.jpg"
+  },
+  {
+    "clave": "emb-007",
+    "indicador": "Tasa de cumplimiento",
+    "respuesta": "El indicador Tasa de cumplimiento está por debajo de la meta.",
+    "valor_actual": 0.319623,
+    "unidad": "%",
+    "meta": 0.622462,
+    "tendencia": "por debajo",
+    "como_se_construye": "Total ejecutado / Total meta",
+    "definicion": "Porcentaje de cumplimiento del objetivo general respecto a lo ejecutado",
+    "palabras_clave": [
+      "cumplimiento",
+      "tasa",
+      "avance"
+    ],
+    "fecha_corte": "2025-07-01",
+    "imagen": "embudo_cumplimiento.jpg"
+  }
+]

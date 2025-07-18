@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cubo Dashboard - Sistema de Informes Empresariales</title>
+  <meta name="description" content="Dashboard interno para gestión de alertas y métricas empresariales">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="app/css/tailwind-extras.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'menu-gray': '#505050',
+            'menu-red': '#dc2626'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex">
+  <!-- Modal de autenticación de líder -->
+  <div id="leader-auth-modal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full mx-4">
+      <h2 id="modal-title" class="text-2xl font-bold mb-4">Identificación de líder</h2>
+      <label for="leaderNameInput" class="block text-sm font-medium text-gray-700 mb-2">Nombre del líder:</label>
+      <input type="text" id="leaderNameInput" list="leaderNames" autocomplete="off" maxlength="30" aria-describedby="leader-help" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <datalist id="leaderNames">
+        <option value="Tatiana"></option>
+        <option value="Adriana"></option>
+        <option value="Lina"></option>
+        <option value="Juan"></option>
+      </datalist>
+      <p id="leader-help" class="help-text text-sm text-gray-600 mt-2">Ingresa tu nombre para acceder a la gestión de alertas</p>
+      <button id="leaderAuthBtn" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">Ingresar</button>
+      <button type="button" class="modal-close absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl" onclick="this.closest('.modal').classList.add('hidden')" aria-label="Cerrar">×</button>
+    </div>
+  </div>
+  
+  <!-- Sidebar -->
+  <div class="sidebar bg-white shadow-lg h-screen flex flex-col transition-all duration-300 ease-in-out w-64" id="sidebar">
+    <!-- Header con logo y botón hamburguesa -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="app/images/logo/images1.png" alt="Logo Tuya" class="h-10 w-auto" />
+      </div>
+      <!-- Botón hamburguesa -->
+      <button class="toggle-btn p-2 text-menu-gray hover:text-gray-800 transition-colors" id="toggleSidebar" aria-label="Expandir/Contraer menú" aria-expanded="true">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú de navegación -->
+    <nav class="menu flex-1 py-4" role="navigation" aria-label="Menú principal">
+      <ul class="space-y-2 px-4">
+        <li class="menu-item active group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="alertas" data-title="Alertas" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="label text-menu-gray font-medium">Alertas</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="saldos" data-title="Saldos" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="label text-menu-gray font-medium">Saldos</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="embudo" data-title="Embudo" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="label text-menu-gray font-medium">Embudo</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="canales" data-title="Canales" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+          </svg>
+          <span class="label text-menu-gray font-medium">Canales</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="cartera-vigente" data-title="Cartera Vigente" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M21 7H3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm0 2v2h-4a2 2 0 0 0-2 2v2H3V9h18zm-6 4v-2a1 1 0 0 1 1-1h4v4h-4a1 1 0 0 1-1-1z"/>
+          </svg>
+          <span class="label text-menu-gray font-medium">Cartera Vigente</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="cartera-castigada" data-title="Cartera Castigada" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="label text-menu-gray font-medium">Cartera Castigada</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="tacticos" data-title="Tácticos" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 17v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="7" y="13" width="3" height="6" rx="1"/>
+            <rect x="14" y="10" width="3" height="9" rx="1"/>
+          </svg>
+          <span class="label text-menu-gray font-medium">Tácticos</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="historico" data-title="Histórico" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="label text-menu-gray font-medium">Histórico</span>
+        </li>
+        
+        <li class="menu-item group cursor-pointer flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-gray-100" data-section="cierre-junta" data-title="Cierre de Juntas" tabindex="0" role="menuitem">
+          <svg class="w-5 h-5 text-menu-gray flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+          <span class="label text-menu-gray font-medium">Cierre de Juntas</span>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Botón Cerrar Sesión -->
+    <div class="p-4 border-t border-gray-200">
+      <button class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-menu-red text-menu-red rounded-lg hover:bg-red-50 transition-all duration-200 font-medium">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+        </svg>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Contenido principal -->
+  <div class="main-content flex-1 min-w-0">
+    <main id="mainContainer" role="main" class="p-8">
+      <!-- Aquí se cargará dinámicamente el contenido de cada sección -->
+    </main>
+  </div>
+  
+  <!-- Botón flotante para gestión de alertas de líder -->
+  <button id="leader-alerts-btn" aria-label="Gestión de alertas de líder" class="fixed bottom-8 right-8 z-30 bg-blue-600 text-white border-none rounded-full px-7 py-4 text-lg shadow-lg cursor-pointer transition-all duration-200 hover:bg-blue-700 hover:shadow-xl">Líder</button>
+  
+  <script type="module" src="app/js/main.js"></script>
+  <script type="module" src="app/js/auth/leaderSession.js"></script>
+  <script type="module" src="app/js/modules/alertManager.js"></script>
+  <script type="module" src="app/js/views/LeaderAlertas.js"></script>
+</body>
+</html>

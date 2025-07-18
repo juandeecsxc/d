@@ -1,0 +1,5 @@
+[
+  { "clave": "saldo", "respuesta": "El saldo total es de $1,250,000 MXN." },
+  { "clave": "disponible", "respuesta": "El saldo disponible es de $950,000 MXN." },
+  { "clave": "banco", "respuesta": "El banco principal es BBVA." }
+] 

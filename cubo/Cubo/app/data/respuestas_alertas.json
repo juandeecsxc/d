@@ -1,0 +1,5 @@
+[
+  { "clave": "riesgo", "respuesta": "El riesgo actual está controlado según los parámetros establecidos." },
+  { "clave": "incidente", "respuesta": "No se han reportado incidentes en el último mes." },
+  { "clave": "alerta", "respuesta": "Hay 2 alertas activas en el sistema." }
+] 
